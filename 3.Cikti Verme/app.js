@@ -10,6 +10,10 @@ console.log("Hello JS");
 console.log(3.14);
 console.log({ name: "Yusuf", surname: "Arslan" });
 
+console.error("Hata mesaji");
+console.warn("Uyarı mesaji");
+
+
 // console.clear();  -- console temizleme
 
 let a = 10;
