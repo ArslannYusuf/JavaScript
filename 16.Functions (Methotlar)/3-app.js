@@ -15,6 +15,10 @@
         return functionName;
     }
 
+
+    Return keyword'u; 
+    1- Bir degeri methodun disarisina cikarmak, tasimak icin kullanilir
+    2- Bir methodu bitiren anahtar kelimedir. (return keyword'unden sonra scope icine yazilan diger kodlar calismaz... )
 */
 
 let donenDeger = cube(2);
@@ -43,3 +47,11 @@ function fonksiyonuDondur() {
 
 var dondurulmusFonksiyon = fonksiyonuDondur();
 dondurulmusFonksiyon(); // "Bu parametresiz bir fonksiyondur." çıktısını verecek
+
+
+
+function selam(){
+    console.log("Hello JS");
+    // void --> geriye deger dondurmeyen
+}
+selam();
