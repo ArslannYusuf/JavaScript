@@ -7,6 +7,8 @@
     
     Not: JS ile arrayler farkli veri tiplerinde degerler tutabilir. Diger programlama dillerinde boyle bir imkan yok.
 
+    Not: arrayler object bir veri tipidir.
+
 */
 //------Array Olusturma (default olarak olsuturup sonradan deger atamsi yapilabilir)
 
