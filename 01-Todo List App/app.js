@@ -6,6 +6,8 @@ const todoList = document.querySelector(".list-group");
 const firstCardBody = document.querySelectorAll(".card-body")[0];
 const secondCardBody = document.querySelectorAll(".card-body")[1];
 const clearButton = document.querySelector("#clearButton");
+const filterInput = document.querySelector("#todoSearch");
+
 todos = [];
 
 runEvents();
@@ -15,6 +17,7 @@ function runEvents() {
   document.addEventListener("DOMContentLoaded", pageLoad);
   secondCardBody.addEventListener("click", removeTodoToUI);
   clearButton.addEventListener("click", clearAllTodos);
+  filterInput.addEventListener("keyup", filterTodos);
 }
 
 function clearAllTodos() {
@@ -30,6 +33,23 @@ function clearAllTodos() {
     showAlert("success", "Tum liste silindi...");
   } else {
     showAlert("danger", "Hiç todo yok, silme işlemi gerçekleştirilemedi !");
+  }
+}
+
+function filterTodos(e) {
+  const filterValue = e.target.value.toLowerCase().trim();
+  const todoListesi = document.querySelectorAll(".list-group-item");
+
+  if (todoListesi.length > 0) {
+    todoListesi.forEach(function (todo) {
+      if (todo.textContent.toLowerCase().trim().includes(filterValue)) {
+        todo.setAttribute("style", "display: block");
+      } else {
+        todo.setAttribute("style", "display: none !important");
+      }
+    });
+  } else {
+    showAlert("danger", "Hiç todo yok, arama işlemi gerçekleştirilemedi !");
   }
 }
 
@@ -63,7 +83,6 @@ function addTodo(e) {
     // storage ekleme
     addTodoToStorage(inputText);
   }
-
   //yonlendirmeyi engelleme
   e.preventDefault();
 }
@@ -108,8 +127,8 @@ function showAlert(type, message) {
 
   div.textContent = message;
   firstCardBody.appendChild(div);
-  setTimeout(function () {
-    // zamanlama islemi
+    
+  setTimeout(function () { // zamanlama islemi
     div.remove();
   }, 2750); // 2 saniye saonra
 }
