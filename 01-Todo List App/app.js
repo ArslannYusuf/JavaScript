@@ -11,8 +11,18 @@ todos = [];
 runEvents();
 
 function runEvents() {
-  form.addEventListener("submit", addTodo);
+    form.addEventListener("submit", addTodo);
+    document.addEventListener("DOMContentLoaded", pageLoad);
 }
+
+function pageLoad() { 
+    checkTodosFromStorage();
+    todos.forEach(function (todo) {
+        addTodoToUI(todo);
+    });
+
+}
+
 
 function addTodo(e) {
   const inputText = addInput.value.trim();
