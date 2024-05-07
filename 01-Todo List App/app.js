@@ -11,18 +11,45 @@ todos = [];
 runEvents();
 
 function runEvents() {
-    form.addEventListener("submit", addTodo);
-    document.addEventListener("DOMContentLoaded", pageLoad);
+  form.addEventListener("submit", addTodo);
+  document.addEventListener("DOMContentLoaded", pageLoad);
+  secondCardBody.addEventListener("click", removeTodoToUI);
+  clearButton.addEventListener("click", clearAllTodos);
 }
 
-function pageLoad() { 
-    checkTodosFromStorage();
-    todos.forEach(function (todo) {
-        addTodoToUI(todo);
+function clearAllTodos() {
+  const todoListesi = document.querySelectorAll(".list-group-item");
+  if (todoListesi.length > 0) {
+    // UI silme
+    todoListesi.forEach(function (todo) {
+      todo.remove();
     });
-
+    // storage silme
+    todos = [];
+    localStorage.setItem("todos", JSON.stringify(todos));
+    showAlert("success", "Tum liste silindi...");
+  } else {
+    showAlert("danger", "Hiç todo yok, silme işlemi gerçekleştirilemedi !");
+  }
 }
 
+function pageLoad() {
+  checkTodosFromStorage();
+  todos.forEach(function (todo) {
+    addTodoToUI(todo);
+  });
+}
+
+function removeTodoToUI(e) {
+  if (e.target.className === "fa fa-remove") {
+    // UI silme
+    const todo = e.target.parentElement.parentElement;
+    todo.remove();
+    // storage silme
+    removeTodoToStorage(todo.textContent);
+    showAlert("danger", "Todo silindi...");
+  }
+}
 
 function addTodo(e) {
   const inputText = addInput.value.trim();
@@ -80,8 +107,19 @@ function showAlert(type, message) {
   // div.className = "alert alert-"+type;
 
   div.textContent = message;
-    firstCardBody.appendChild(div);
-    setTimeout(function () { // zamanlama islemi
-        div.remove();
-    }, 2000); // 2 saniye saonra
+  firstCardBody.appendChild(div);
+  setTimeout(function () {
+    // zamanlama islemi
+    div.remove();
+  }, 2750); // 2 saniye saonra
+}
+
+function removeTodoToStorage(removeTodo) {
+  checkTodosFromStorage();
+  todos.forEach(function (todo, index) {
+    if (removeTodo === todo) {
+      todos.splice(index, 1);
+    }
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
