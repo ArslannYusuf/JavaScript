@@ -3,66 +3,75 @@
 const form = document.querySelector("#todoAddForm");
 const addInput = document.querySelector("#todoName");
 const todoList = document.querySelector(".list-group");
-const firstCardBody = document.querySelectorAll(".list-group")[0];
-const secondCardBody = document.querySelectorAll(".list-group")[1];
+const firstCardBody = document.querySelectorAll(".card-body")[0];
+const secondCardBody = document.querySelectorAll(".card-body")[1];
 const clearButton = document.querySelector("#clearButton");
 todos = [];
 
 runEvents();
 
 function runEvents() {
-    form.addEventListener("submit", addTodo);
-
+  form.addEventListener("submit", addTodo);
 }
 
-function addTodo(e) { 
-    const inputText = addInput.value.trim();
-    if (inputText== null || inputText === "") {
-        alert("Lütfen bir değer giriniz!");
-    } else {
-        // arayuze ekleme
-        addTodoToUI(inputText);
-    }
-    
-
+function addTodo(e) {
+  const inputText = addInput.value.trim();
+  if (inputText == null || inputText === "") {
+    showAlert("warning", "Lütfen bir todo giriniz !");
+  } else {
+    // arayuze ekleme
+    addTodoToUI(inputText);
+    //bilgilendirme ekleme
+    showAlert("success", "Todo eklendi...");
     // storage ekleme
     addTodoToStorage(inputText);
+  }
 
-
-    //yonlendirmeyi engelleme
-    e.preventDefault();
+  //yonlendirmeyi engelleme
+  e.preventDefault();
 }
 
 function addTodoToUI(newTodo) {
-    const li = document.createElement("li");
-    li.className = "list-group-item d-flex justify-content-between";
-    li.textContent = newTodo;
+  const li = document.createElement("li");
+  li.className = "list-group-item d-flex justify-content-between";
+  li.textContent = newTodo;
 
-    const a = document.createElement("a");
-    a.href = "#";
-    a.className = "delete-item";
+  const a = document.createElement("a");
+  a.href = "#";
+  a.className = "delete-item";
 
-    const i = document.createElement("i");
-    i.className = "fa fa-remove";
+  const i = document.createElement("i");
+  i.className = "fa fa-remove";
 
-    a.appendChild(i);
-    li.appendChild(a);
-    todoList.appendChild(li);
+  a.appendChild(i);
+  li.appendChild(a);
+  todoList.appendChild(li);
 
-    addInput.value = "";
-
+  addInput.value = "";
 }
 
-function addTodoToStorage(newTodo) { 
-    checkTodosFromStorage();
-    todos.push(newTodo);
-    localStorage.setItem("todos", JSON.stringify(todos));
+function addTodoToStorage(newTodo) {
+  checkTodosFromStorage();
+  todos.push(newTodo);
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function checkTodosFromStorage() {
-    if (localStorage.getItem("todos") === null) {
-      todos = [];
-    } else {
-      todos = JSON.parse(localStorage.getItem("todos"));
-    }
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+}
+
+function showAlert(type, message) {
+  const div = document.createElement("div");
+  div.className = `alert alert-${type}`;
+  // div.className = "alert alert-"+type;
+
+  div.textContent = message;
+    firstCardBody.appendChild(div);
+    setTimeout(function () { // zamanlama islemi
+        div.remove();
+    }, 2000); // 2 saniye saonra
 }
