@@ -1,0 +1,33 @@
+---- ASYNC - SYNC ozet ----
+
+> Senkron (sync): Sirayla calisan islem parcaciklaridir
+
+> Asenkron (async): Es zamamli birden fazla is yapmak icin kullanilir
+
+
+
+* Birbirine bagli (biri digerinin return degerini alan) methodlarda async problemi olabilir. Bunun onune gecmek icin promise, async-await vb. kullanilir.
+
+
+* JavaScript SENKRON (sync) calisan bir propgramlama dilidir.
+
+
+* Ancak asagidaki durumlarda ASENKRON (async) olarak calisir
+
+    1. Timing (Zamansal islemler)
+    2. Events (Olaylar)
+    3. HTTP istekleri
+        -XmlHttpRequest
+        -Fetch API
+        -Axios
+
+
+* Asenkronu yonetmek icin;
+
+    1.Callback      (ES6 oncesi)
+    2.Promise       (ES6 2015)
+    3.Async-Await   (ES8 2017)
+
+    Not: 
+    > Callback-hell olmaya baslayinca Promise'ler ortaya cikti...
+    > Promise-chain olmaya baslayinca Async-Await ortaya cikti...
