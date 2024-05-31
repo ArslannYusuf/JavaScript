@@ -19,6 +19,9 @@ fetch(url)
 
 * donen promise yani response, .then ile calisir ve promise'nin prototype'inde yer alan json() methoduyla json objesini ilk then ile yakalayip ikinci then ile de ilgili islemimi yapabilirim, hata yine catch ve finally de mevcut ;)
 
+
+! NOT: fetch api'ler async yapida oldugu icin donen promise'lerle sync yapiya cevirip kullaniyoruz 
+
 */
 
 // console.log(this); // Window objesi
