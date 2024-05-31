@@ -26,6 +26,9 @@ fetch(url)
 
 // console.log(this); // Window objesi
 
+
+
+
 /* fetch ile veri cekme */
 
 // function getStudents(url) {
@@ -44,17 +47,24 @@ fetch(url)
 
 // getStudents("students.json");
 
+
+
+
+
 /* fetch ile veri cekme */
 
-// function getData(url){
-//     fetch(url)
-//     /* .then ile response'u tek satirda json formatina cevirirken "return" yazmama gerek yok */
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-//     .catch((error) => console.log(error));
-// }
+function getData(url){
+    fetch(url)
+    /* .then ile response'u tek satirda json formatina cevirirken "return" yazmama gerek yok */
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+}
 
-// getData("https://jsonplaceholder.typicode.com/users")
+getData("https://jsonplaceholder.typicode.com/users")
+
+
+
 
 /* alternatif */
 
@@ -68,18 +78,24 @@ fetch(url)
 // .then((data) => console.log(data))
 // .catch((error) => console.log(error));
 
+
+
+
+
+
+
 /* POST methodu ile veri gonderme (rest api olmadigi icin bu methodu kullanamayiz, sadece ornekten ibaret)*/
 
-function saveUsers() {
-  fetch("https://jsonplaceholder.typicode.com/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-    body: JSON.stringify({
-      id: 11,
-      name: "Jhon Doe",
-      username: "johndoe",
-    }),
-  });
-}
+// function saveUsers() {
+//   fetch("https://jsonplaceholder.typicode.com/users", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json; charset=UTF-8",
+//     },
+//     body: JSON.stringify({
+//       id: 11,
+//       name: "Jhon Doe",
+//       username: "johndoe",
+//     }),
+//   });
+// }
